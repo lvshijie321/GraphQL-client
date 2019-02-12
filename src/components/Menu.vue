@@ -1,14 +1,18 @@
 <template>
-  <div class="hello">
-    <h1 class="title"> 使用 Axios 处理 GraphQL 和 RESTful 请求</h1>
-    <button @click="getApi1">RESTful 方式请求 api</button>
-    <button @click="getApi2">GraphQL 方式请求 api</button>
-    <ul v-if="flag" class="list">
-      <li v-for="(item, index) in list" :key="index">{{item.context + ' - ' + item.ftime}}</li>
-    </ul>
-    <div class="msg" v-else>{{message}}</div>
-    <a style="cursor: pointer;" @click="$router.go(-1)">返回</a>
-  </div>
+  <div class="wrap">
+      <router-link to="/helloWorld" >
+        <a>使用 Axios 处理 GraphQL 和 RESTful 请求</a>
+      </router-link>
+      <router-link to="/helloWorld1">
+        <a>分别处理 GraphQL 和 RESTful 请求</a>
+      </router-link>
+      <router-link to="/page">
+        <a>分页</a>
+      </router-link>
+      <router-link to="/auth">
+        <a>鉴权</a>
+      </router-link>
+    </div>
 </template>
 
 <script>
@@ -27,12 +31,10 @@ export default {
     getApi1() {
       this.$axios('api1')
         .then((response) => {
-          debugger
           this.list = response
           this.flag = true
         })
         .catch(function (error) {
-          debugger
           console.log(error);
         });
 
@@ -76,6 +78,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .title {
   line-height: 100px;
 }

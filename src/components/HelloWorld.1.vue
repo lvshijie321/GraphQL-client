@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1 class="title"> 使用 Axios 处理 GraphQL 和 RESTful 请求</h1>
+    <h1 class="title"> 分别处理 GraphQL 和 RESTful 请求</h1>
     <button @click="getApi1">RESTful 方式请求 api</button>
     <button @click="getApi2">GraphQL 方式请求 api</button>
     <ul v-if="flag" class="list">
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import gql from "graphql-tag";
 export default {
   name: 'HelloWorld',
   data () {
@@ -25,33 +26,50 @@ export default {
   },
   methods: {
     getApi1() {
-      this.$axios('api1')
+      this.$axios1('api1')
         .then((response) => {
-          debugger
           this.list = response
           this.flag = true
         })
         .catch(function (error) {
-          debugger
           console.log(error);
         });
 
 
     },
     getApi2() {
-      const param = {
-        query: `{
-          hello
-        }`
-      }
-      this.$axios('api2', param)
-        .then((response) => {
-          this.message = response.hello
-          this.flag = false
+      //todo 缓存问题没解决
+      this.$apollo
+        .query({
+          query: gql `{
+            hello
+          }`,
+          // variables: {
+          //   code: this.$route.params.code
+          // },
+          client: 'api2'      //如果请求不同的路径用client标识选的路径
         })
-        .catch(function (error) {
-          console.log(error);
-        });
+        .then(response => {
+          debugger
+        })
+        .catch(error => {
+          debugger
+        })
+
+
+      // const param = {
+      //   query: `{
+      //     hello
+      //   }`
+      // }
+      // this.$axios('api2', param)
+      //   .then((response) => {
+      //     this.message = response.hello
+      //     this.flag = false
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error);
+      //   });
 
 
 //             {

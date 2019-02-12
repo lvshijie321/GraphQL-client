@@ -1,8 +1,8 @@
-*.js linguist-language=javascript,vue
+*.js linguist-language=javascript
 
-*.css linguist-language=javascript,vue
+*.css linguist-language=javascript
 
-*.html linguist-language=javascript,vue
+*.html linguist-language=javascript
 
-*.vue linguist-language=javascript,vue
+*.vue linguist-language=javascript
 
