@@ -77,6 +77,7 @@ export default {
     },
     getApi2() {
       //todo 缓存问题没解决
+
       this.$apollo
         .query({
           query: gql `{
@@ -88,7 +89,7 @@ export default {
           client: 'api2'      //如果请求不同的路径用client标识选的路径
         })
         .then(response => {
-
+debugger
         })
         .catch(error => {
 

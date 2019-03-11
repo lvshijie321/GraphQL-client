@@ -40,9 +40,16 @@ export default {
     },
     getApi2() {
       const param = {
-        query: `{
-          hello
-        }`
+        query: `
+          query  {
+             user  {
+              name
+
+            }
+        }
+        `,
+
+       // variables: { bool: false },
       }
       this.$axios('api2', param)
         .then((response) => {

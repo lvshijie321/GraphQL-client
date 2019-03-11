@@ -6,7 +6,7 @@ export default [
   },
   {
     id: 'api2',
-    url: '/GraphQL/api2',
+    url: 'http://127.0.0.1:3000/graphql',
     method: 'post',
     isGraphQL: true
   },

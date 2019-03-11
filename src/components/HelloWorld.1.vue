@@ -38,11 +38,21 @@ export default {
 
     },
     getApi2() {
+      debugger
+      console.log(gql `{
+            hello {
+              a
+              b
+            }
+          }`)
       //todo 缓存问题没解决
       this.$apollo
         .query({
           query: gql `{
-            hello
+            hello: {
+              a
+              b
+            }
           }`,
           // variables: {
           //   code: this.$route.params.code
@@ -50,10 +60,11 @@ export default {
           client: 'api2'      //如果请求不同的路径用client标识选的路径
         })
         .then(response => {
-          debugger
+          this.message = response.data.hello
+          this.flag = false
         })
         .catch(error => {
-          debugger
+
         })
 
 
